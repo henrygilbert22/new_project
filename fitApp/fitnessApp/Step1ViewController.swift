@@ -16,8 +16,6 @@ class Step1ViewController: UIViewController {
     @IBOutlet weak var otherButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var maleButton: UIButton!
-    
-    
     func assignbackground(){
           let background = UIImage(named: "Hexagon background")
           var imageView : UIImageView!
@@ -29,6 +27,7 @@ class Step1ViewController: UIViewController {
           view.addSubview(imageView)
           self.view.sendSubviewToBack(imageView)
       }
+    
     override func viewDidLoad() {
     super.viewDidLoad()
         configureButtons()

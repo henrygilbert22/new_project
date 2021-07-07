@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "victor-freitas-JbI04nYfaJk-unsplash.jpg",
+      "filename" : "background.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "victor-freitas-JbI04nYfaJk-unsplash-1.jpg",
+      "filename" : "background-1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "victor-freitas-JbI04nYfaJk-unsplash-2.jpg",
+      "filename" : "background-2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

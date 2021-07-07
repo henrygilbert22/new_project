@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "videoblocks-black-hexagon-background-3d-render_riwskh-vg_thumbnail-full01.png",
+      "filename" : "gym_background.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "videoblocks-black-hexagon-background-3d-render_riwskh-vg_thumbnail-full01-1.png",
+      "filename" : "gym_background-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "videoblocks-black-hexagon-background-3d-render_riwskh-vg_thumbnail-full01-2.png",
+      "filename" : "gym_background-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
