@@ -13,6 +13,12 @@ target 'fitnessApp' do
     # Pods for testing
   end
 
+ 
+  pod 'Firebase/Core', :inhibit_warnings => true
+  pod 'Firebase/Database', :inhibit_warnings => true
+  pod 'Firebase/Auth', :inhibit_warnings => true
+
+
   target 'fitnessAppUITests' do
     # Pods for testing
   end

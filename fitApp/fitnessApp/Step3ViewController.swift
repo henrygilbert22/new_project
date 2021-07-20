@@ -8,6 +8,7 @@
 var globalHeight = ""
 var globalWeight = ""
 import UIKit
+import Firebase
 
 class Step3ViewController: UIViewController {
 
@@ -49,83 +50,41 @@ class Step3ViewController: UIViewController {
         globalWeight = weightText.text!
         globalHeight = heightText.text!
         
-        userDefaults.setValue(weightText.text, forKey: "WEIGHT")
-        userDefaults.setValue(heightText.text, forKey: "HEIGHT")
+        userDefaults.setValue(heightText.text!, forKey: "HEIGHT")
+        userDefaults.setValue(weightText.text!, forKey: "WEIGHT")
+
         
-        let url = NSURL(string: "https://chickfila-tally.net/recieve.php") // locahost MAMP - change to point to your database server
+        let rootRef = Database.database(url:"https://ios-project-d842d-default-rtdb.firebaseio.com/").reference()
+
+        let itemsRef = rootRef.child("users")
         
-        var request = URLRequest(url: url! as URL)
-                request.httpMethod = "POST"
-                
-        var dataString = "secretWord=44fdcv8jf3" // starting POST string with a secretWord
+        var newUsername = userDefaults.value(forKey: "USERNAME")
+        var newPassword = userDefaults.value(forKey: "PASSWORD")
+        var newHeight = userDefaults.value(forKey: "HEIGHT")
+        var newWeight = userDefaults.value(forKey: "WEIGHT")
+        var newGender = userDefaults.value(forKey: "GENDER")
         
-// the POST string has entries separated by &
-
-        dataString = dataString + "&item1=\("Hello")" // add items as name and value
-        dataString = dataString + "&item2=\("this")"
-        dataString = dataString + "&item3=\("is")"
-        dataString = dataString + "&item4=\("a")"
-        dataString = dataString + "&item5=\("test")"
+        let newUser = user()
+        newUser.username = newUsername! as! String
+        newUser.password = newPassword! as! String
+        newUser.height = newHeight! as! String
+        newUser.weight = newWeight! as! String
+        newUser.gender = newGender! as! String
         
-        // convert the post string to utf8 format
-                
-        let dataD = dataString.data(using: .utf8) // convert to utf8 string
         
-        do
-               {
-               
-       // the upload task, uploadJob, is defined here
+        itemsRef.child(newUsername as! String).setValue(newUser.toAnyObject())
+        
+        
 
-                   let uploadJob = URLSession.shared.uploadTask(with: request, from: dataD)
-                   {
-                       data, response, error in
-                       
-                       if error != nil {
-                           
-       // display an alert if there is an error inside the DispatchQueue.main.async
+        
+        
+       
+        
+        
+        
 
-                           DispatchQueue.main.async
-                           {
-                                   let alert = UIAlertController(title: "Upload Didn't Work?", message: "Looks like the connection to the server didn't work.  Do you have Internet access?", preferredStyle: .alert)
-                                   alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                                   self.present(alert, animated: true, completion: nil)
-                           }
-                       }
-                       else
-                       {
-                           if let unwrappedData = data {
-                               
-                               let returnedData = NSString(data: unwrappedData, encoding: String.Encoding.utf8.rawValue) // Response from web server hosting the database
-                               
-                               if returnedData == "1" // insert into database worked
-                               {
-
-       // display an alert if no error and database insert worked (return = 1) inside the DispatchQueue.main.async
-
-                                   DispatchQueue.main.async
-                                   {
-                                       let alert = UIAlertController(title: "Upload OK?", message: "Looks like the upload and insert into the database worked.", preferredStyle: .alert)
-                                       alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                                       self.present(alert, animated: true, completion: nil)
-                                   }
-                               }
-                               else
-                               {
-       // display an alert if an error and database insert didn't worked (return != 1) inside the DispatchQueue.main.async
-
-                                   DispatchQueue.main.async
-                                   {
-
-                                   let alert = UIAlertController(title: "Upload Didn't Work", message: "Looks like the insert into the database did not worked.", preferredStyle: .alert)
-                                   alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                                   self.present(alert, animated: true, completion: nil)
-                                   }
-                               }
-                           }
-                       }
-                   }
-                   uploadJob.resume()
-               }
+        
+       
         
     }
     

@@ -7,13 +7,14 @@
 
 import UIKit
 import GoogleSignIn
+import Firebase
+
 
 @objc(ViewController)
 
 class HomeBoardViewController: UIViewController {
-   
+
     //MARK: Properties
-    
     //nickname for GIDSignIn.sharedInstance()
     var googleSignIn = GIDSignIn.sharedInstance()
     
@@ -23,8 +24,13 @@ class HomeBoardViewController: UIViewController {
     @IBOutlet weak var signInLabel: UILabel!
     @IBOutlet weak var signOutLabel: UILabel!
     
+    @IBOutlet weak var username: UITextField!
+    
+    @IBOutlet weak var password: UITextField!
+    
     let userDefaults = UserDefaults()
     
+    var found = false;
     
     func assignbackground(){
           let background = UIImage(named: "Hexagon background")
@@ -40,19 +46,10 @@ class HomeBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         assignbackground()
-        
+       
+
+       
     
-    GIDSignIn.sharedInstance()?.presentingViewController = self
-
-    // Automatically sign in the user
-    GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-
-      NotificationCenter.default.addObserver(self,
-        selector: #selector(HomeBoardViewController.receiveToggleAuthUINotification(_:)),
-        name: NSNotification.Name(rawValue: "ToggleAuthUINotification"),
-        object: nil)
-
-    toggleAuthUI()
     }
 
     //If the user clicks sign in
@@ -112,6 +109,75 @@ class HomeBoardViewController: UIViewController {
     // --------------------------------------------------------
 
       @IBAction func Button(_ sender: Any) {
+        
+      
+        let rootRef = Database.database(url:"https://ios-project-d842d-default-rtdb.firebaseio.com/").reference()
+
+        let itemsRef = rootRef.child("users")
+        
+        var currentUser = user()
+        
+       
+        itemsRef.observeSingleEvent(of: .value, with: { [self] snapshot in
+       
+          var usersArray: [user] = []
+            
+          for child in snapshot.children {
+            // 4
+            if let snapshot = child as? DataSnapshot,
+               let newUser = user(snapshot: snapshot) {
+                usersArray.append(newUser)
+            }
+          }
+            
+            for subUser in usersArray{
+                print(subUser.username!)
+                if (subUser.username! == username.text! && subUser.password! == password.text!){
+                    found = true
+                    currentUser = subUser
+                }
+            }
+            print(found)
+            if(found){
+                found = false
+                
+                userDefaults.set(currentUser.gender, forKey: "GENDER")
+                userDefaults.set(currentUser.height, forKey: "HEIGHT")
+                userDefaults.set(currentUser.weight, forKey: "WEIGHT")
+                userDefaults.set(currentUser.username, forKey: "USERNAME")
+                userDefaults.set(currentUser.password, forKey: "PASSWORD")
+                
+                if(currentUser.weight == "")
+                {
+                    let story = UIStoryboard(name: "Main", bundle: nil)
+                          let controller = story.instantiateViewController(identifier: "InitNav") as! UINavigationController
+                          self.present(controller, animated: true, completion: nil)
+                }
+                else{
+                    let story = UIStoryboard(name: "Main", bundle: nil)
+                          let controller = story.instantiateViewController(identifier: "Home")
+                          self.present(controller, animated: true, completion: nil)
+                    
+                }
+                
+               }
+            else{
+                
+                let alert = UIAlertController(title: "Incorrect username or password", message: "Please try again", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
+            }
+            
+        })
+        
+        
+       
+        
+        
+        
+        /*
         if (userDefaults.value(forKey: "WEIGHT") != nil){
     
             let story = UIStoryboard(name: "Main", bundle: nil)
@@ -124,5 +190,7 @@ class HomeBoardViewController: UIViewController {
                   let controller = story.instantiateViewController(identifier: "InitNav") as! UINavigationController
                   self.present(controller, animated: true, completion: nil)
            }
+         */
+        
     }
 }

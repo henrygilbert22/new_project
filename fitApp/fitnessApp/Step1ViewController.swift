@@ -13,6 +13,7 @@ class Step1ViewController: UIViewController {
     // MARK: Properties
     var gender: String = ""
     
+    
     @IBOutlet weak var otherButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var maleButton: UIButton!
@@ -51,21 +52,16 @@ class Step1ViewController: UIViewController {
     
     @IBAction func maleAction(_ sender: Any)
     {
-        gender = "Male"
-        userDefaults.setValue(gender, forKey: "BODYPART")
+        userDefaults.setValue("Male", forKey: "GENDER")
     }
     
     @IBAction func femaleAction(_ sender: Any)
     {
-        gender = "Female"
-        userDefaults.setValue(gender, forKey: "BODYPART")
-
+        userDefaults.setValue("Female", forKey: "GENDER")
     }
     
     @IBAction func otherAction(_ sender: Any)
     {
-        gender = "Other"
-        userDefaults.setValue(gender, forKey: "BODYPART")
-
+        userDefaults.setValue("Other", forKey: "GENDER")
     }
 }

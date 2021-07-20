@@ -30,6 +30,10 @@
 		A002B4F7262264AB00A098EF /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002B4F6262264AB00A098EF /* HomeModel.swift */; };
 		A002B4FC262264B600A098EF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002B4FB262264B600A098EF /* LocationModel.swift */; };
 		A002B50626235FA200A098EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A002B50526235FA200A098EF /* MapKit.framework */; };
+		A07A281626A606DD004CEDFE /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A281526A606DD004CEDFE /* user.swift */; };
+		A07A281B26A6222F004CEDFE /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A281A26A6222F004CEDFE /* NewUserViewController.swift */; };
+		A07A282026A755CA004CEDFE /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A281F26A755CA004CEDFE /* EditProfile.swift */; };
+		A0D082BA26A5FEEF002937EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0D082B926A5FEEF002937EB /* GoogleService-Info.plist */; };
 		A0D9B32425E817AF00B93C3A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9B32325E817AF00B93C3A /* File.swift */; };
 		A0D9B32C25E8197800B93C3A /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9B32B25E8197800B93C3A /* BMIViewController.swift */; };
 		A0F1DF6525F3ECAC003D7A3B /* HomeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1DF6425F3ECAC003D7A3B /* HomeBoardViewController.swift */; };
@@ -92,6 +96,10 @@
 		A002B4F6262264AB00A098EF /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		A002B4FB262264B600A098EF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		A002B50526235FA200A098EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A07A281526A606DD004CEDFE /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		A07A281A26A6222F004CEDFE /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		A07A281F26A755CA004CEDFE /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		A0D082B926A5FEEF002937EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0D9B32325E817AF00B93C3A /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		A0D9B32B25E8197800B93C3A /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
 		A0F1DF6425F3ECAC003D7A3B /* HomeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBoardViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 		3380698225D86AB90031A084 /* fitnessApp */ = {
 			isa = PBXGroup;
 			children = (
+				A0D082B926A5FEEF002937EB /* GoogleService-Info.plist */,
 				A0D9B32B25E8197800B93C3A /* BMIViewController.swift */,
 				3380698325D86AB90031A084 /* AppDelegate.swift */,
 				3380698525D86AB90031A084 /* SceneDelegate.swift */,
@@ -172,6 +181,7 @@
 				86C616A225F9667900CABBE1 /* CreateNewExercise.swift */,
 				861AB09126084E6400B08502 /* ExerciseTableViewController.swift */,
 				A0F1DF6425F3ECAC003D7A3B /* HomeBoardViewController.swift */,
+				A07A281A26A6222F004CEDFE /* NewUserViewController.swift */,
 				86926A0125E19CB7007D52DF /* CalorieCalculator.swift */,
 				333A475B25DEE40600E25965 /* MainPageViewController.swift */,
 				A0D9B32325E817AF00B93C3A /* File.swift */,
@@ -183,6 +193,8 @@
 				3380699125D86ABA0031A084 /* Info.plist */,
 				A002B4F6262264AB00A098EF /* HomeModel.swift */,
 				A002B4FB262264B600A098EF /* LocationModel.swift */,
+				A07A281526A606DD004CEDFE /* user.swift */,
+				A07A281F26A755CA004CEDFE /* EditProfile.swift */,
 			);
 			path = fitnessApp;
 			sourceTree = "<group>";
@@ -340,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3380699025D86ABA0031A084 /* LaunchScreen.storyboard in Resources */,
+				A0D082BA26A5FEEF002937EB /* GoogleService-Info.plist in Resources */,
 				3380698D25D86ABA0031A084 /* Assets.xcassets in Resources */,
 				3380698B25D86AB90031A084 /* Main.storyboard in Resources */,
 			);
@@ -521,9 +534,12 @@
 				3380698825D86AB90031A084 /* ViewController.swift in Sources */,
 				A0D9B32425E817AF00B93C3A /* File.swift in Sources */,
 				3380698425D86AB90031A084 /* AppDelegate.swift in Sources */,
+				A07A282026A755CA004CEDFE /* EditProfile.swift in Sources */,
 				3380698625D86AB90031A084 /* SceneDelegate.swift in Sources */,
 				A0D9B32C25E8197800B93C3A /* BMIViewController.swift in Sources */,
+				A07A281626A606DD004CEDFE /* user.swift in Sources */,
 				A002B4F22622630800A098EF /* APIViewController.swift in Sources */,
+				A07A281B26A6222F004CEDFE /* NewUserViewController.swift in Sources */,
 				E838B4D1262D0FB7001A8725 /* More ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
