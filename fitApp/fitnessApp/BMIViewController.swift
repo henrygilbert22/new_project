@@ -8,6 +8,7 @@
 import UIKit
 
 class BMIViewController: UIViewController {
+    let userDefaults = UserDefaults()
 
     @IBOutlet weak var outputText: UITextField!
     
@@ -24,12 +25,17 @@ class BMIViewController: UIViewController {
       }
     override func viewDidLoad() {
        
+        var newWeight = userDefaults.value(forKey: "WEIGHT")! as! String
+        var newHeight = userDefaults.value(forKey: "HEIGHT")! as! String
         
-        let weight = Double(globalWeight) ?? 0.0
-        let height = Double(globalHeight) ?? 0.0
-        let bmi = (weight/(height*height))*703
+        let weight = Float(newWeight)!
+        let height = Float(newHeight)!
         
-        outputText.text = String(bmi)
+        let bmi = Float((weight/(height*height))*703)
+        
+        print(weight)
+        print(bmi)
+        outputText.text = String(round(bmi))
         
         super.viewDidLoad()
         assignbackground()
